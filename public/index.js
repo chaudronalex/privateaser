@@ -146,6 +146,23 @@ const actors = [{
   }]
 }];
 
+// STEP 2
+const discount = persons => {
+    if (persons > 60) {
+      return 0.5;
+    }
+
+    if (persons > 20) {
+      return 0.7;
+    }
+
+    if (persons > 10) {
+      return 0.9;
+    }
+
+    return 1;
+  };
+
 console.log(bars);
 console.log(events);
 console.log(actors);
