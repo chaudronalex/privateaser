@@ -185,8 +185,36 @@ const bookingPrice = (bar, time, persons) => {
     return parseFloat((time * bar.pricePerHour + persons * pricePerPerson).toFixed(2));
   };
 
+// STEP 5
+const payActors = (bar, time, persons, option) => {
+    const price = bookingPrice(bar, time, persons);
+    const commission = bookingCommission(price, persons);
+    const deductibleOption = DEDUCTIBLE_PER_PERSON * persons * +option;
 
-  
+    var actors = [{
+      'who': 'booker',
+      'type': 'debit',
+      'amount': price + deductibleOption
+    }, {
+      'who': 'bar',
+      'type': 'credit',
+      'amount': price - commission.value
+    }, {
+      'who': 'insurance',
+      'type': 'credit',
+      'amount': commission.insurance
+    }, {
+      'who': 'treasury',
+      'type': 'credit',
+      'amount': commission.treasury
+    }, {
+      'who': 'privateaser',
+      'type': 'credit',
+      'amount': commission.privateaser + deductibleOption
+    }];
+
+    return actors;
+  };
 
 
 console.log(bars);
