@@ -177,7 +177,16 @@ const bookingCommission = (price, persons) => {
     };
   };
 
+// STEP 4
+const bookingPrice = (bar, time, persons) => {
+    const percent = discount(persons);
+    const pricePerPerson = bar.pricePerPerson * percent;
 
+    return parseFloat((time * bar.pricePerHour + persons * pricePerPerson).toFixed(2));
+  };
+
+
+  
 
 
 console.log(bars);
