@@ -163,6 +163,23 @@ const discount = persons => {
     return 1;
   };
 
+// STEP 3
+const bookingCommission = (price, persons) => {
+    const value = parseFloat((price * PERCENT_COMMISSION).toFixed(2));
+    const insurance = parseFloat((value * PERCENT_INSURANCE).toFixed(2));
+    const treasury = Math.ceil(persons / TREASURY_TAX_PERSON);
+
+    return {
+      insurance,
+      treasury,
+      value,
+      'privateaser': parseFloat((value - insurance - treasury).toFixed(2))
+    };
+  };
+
+
+
+
 console.log(bars);
 console.log(events);
 console.log(actors);
